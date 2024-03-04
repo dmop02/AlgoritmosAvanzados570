@@ -1,33 +1,26 @@
 #include <iostream>
 #include <vector>
 
-// Function to check if a given position is valid in the maze
+using namespace std;
+
 bool isValid(int x, int y, int M, int N) {
     return (x >= 0 && x < M && y >= 0 && y < N);
 }
-
-// Function to solve the maze using backtracking
-bool solveMaze(const std::vector<std::vector<int>>& maze, std::vector<std::vector<int>>& path, int x, int y, int M, int N) {
-    // If the current position is the goal, return true
+// Funcion para resolver el laberinto utilizando backtracking
+bool solveMaze(const vector<vector<int>>& maze, vector<vector<int>>& path, int x, int y, int M, int N) {
     if (x == M - 1 && y == N - 1) {
         path[x][y] = 1;
         return true;
     }
-
-    // Check if the current position is valid and a valid move
+    // Revisar si el movimiento es valido
     if (isValid(x, y, M, N) && maze[x][y] == 1) {
-        // Mark the current position as part of the path
+        
         path[x][y] = 1;
-
-        // Move right
+        
         if (solveMaze(maze, path, x, y + 1, M, N))
             return true;
-
-        // Move down
         if (solveMaze(maze, path, x + 1, y, M, N))
             return true;
-
-        // If none of the above moves work, backtrack
         path[x][y] = 0;
         return false;
     }
@@ -37,32 +30,34 @@ bool solveMaze(const std::vector<std::vector<int>>& maze, std::vector<std::vecto
 
 int main() {
     int M, N;
-    std::cin >> M >> N;
+    cout << "Enter the number of rows (M): ";
+    cin >> M;
 
-    std::vector<std::vector<int>> maze(M, std::vector<int>(N));
-    std::vector<std::vector<int>> path(M, std::vector<int>(N, 0));
+    cout << "Enter the number of columns (N): ";
+    cin >> N;
 
-    // Read the maze from input
+    vector<vector<int>> maze(M, vector<int>(N));
+    vector<vector<int>> path(M, vector<int>(N, 0));
+
+
+    cout << "Enter the maze (0 or 1):" << endl;
     for (int i = 0; i < M; i++) {
         for (int j = 0; j < N; j++) {
-            std::cin >> maze[i][j];
+            cin >> maze[i][j];
         }
     }
-
-    // Solve the maze
+    // Llamar a la funcion para resolver el laberinto
     if (solveMaze(maze, path, 0, 0, M, N)) {
-        // Print the path
+        cout << "Path found:" << endl;
         for (int i = 0; i < M; i++) {
             for (int j = 0; j < N; j++) {
-                std::cout << path[i][j] << " ";
+                cout << path[i][j] << " ";
             }
-            std::cout << std::endl;
+            cout << endl;
         }
     } else {
-        std::cout << "No path found!" << std::endl;
+        cout << "No path found!" << endl;
     }
 
     return 0;
 }
-
-
