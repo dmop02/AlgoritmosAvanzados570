@@ -1,0 +1,13 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "name": "C/C++ Runner: Debug Session",
+      "type": "lldb",
+      "request": "launch",
+      "args": [],
+      "cwd": "/Users/domingomora/Desktop/Universidad/opt/Coding/AlgoAvanzado/AlgoritmosAvanzados570/Dijstra",
+      "program": "/Users/domingomora/Desktop/Universidad/opt/Coding/AlgoAvanzado/AlgoritmosAvanzados570/Dijstra/build/Debug/outDebug"
+    }
+  ]
+}
