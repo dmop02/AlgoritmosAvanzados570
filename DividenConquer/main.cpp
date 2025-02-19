@@ -1,20 +1,27 @@
+//Domingo Mora 
+// Alvaro Solano
+// Divide & Conquer
+
 #include <iostream>
 #include <vector>
 using namespace std;
 
-
-void printArray(const vector<int>& arr) {
-    for (int num : arr) {
+// Function to print the array
+// Complexity: O(n)
+void printArray(const vector<double>& arr) {
+    for (double num : arr) {
         cout << num << " ";
     }
     cout << endl;
 }
 
-void merge(vector<int>& arr, int low, int mid, int high) {
+// Function to merge two halves of the array
+// Complexity: O(n)
+void merge(vector<double>& arr, int low, int mid, int high) {
     int lengthLeft = mid - low + 1;
     int lengthRight = high - mid;
 
-    vector<int> arrLeft(lengthLeft), arrRight(lengthRight);
+    vector<double> arrLeft(lengthLeft), arrRight(lengthRight);
 
     for (int a = 0; a < lengthLeft; a++) {
         arrLeft[a] = arr[low + a];
@@ -26,7 +33,6 @@ void merge(vector<int>& arr, int low, int mid, int high) {
     int i = 0, j = 0, k = low;
 
     while (i < lengthLeft && j < lengthRight) {
-      
         if (arrLeft[i] >= arrRight[j]) {
             arr[k] = arrLeft[i];
             i++;
@@ -37,13 +43,14 @@ void merge(vector<int>& arr, int low, int mid, int high) {
         k++;
     }
 
-// Left 
+    // Copy remaining elements of left array
     while (i < lengthLeft) {
         arr[k] = arrLeft[i];
         k++;
         i++;
     }
-// Right
+
+    // Copy remaining elements of right array
     while (j < lengthRight) {
         arr[k] = arrRight[j];
         k++;
@@ -51,7 +58,9 @@ void merge(vector<int>& arr, int low, int mid, int high) {
     }
 }
 
-void mergeSort(vector<int>& arr, int low, int high) {
+// Function to perform merge sort
+// Complexity: O(n log n)
+void mergeSort(vector<double>& arr, int low, int high) {
     if (low < high) {
         int mid = low + (high - low) / 2;
         mergeSort(arr, low, mid);
@@ -65,7 +74,7 @@ int main() {
     int n;
     cin >> n;
 
-    vector<int> arr(n);
+    vector<double> arr(n);
     cout << "Enter " << n << " elements:\n";
     for (int i = 0; i < n; i++) {
         cin >> arr[i];
