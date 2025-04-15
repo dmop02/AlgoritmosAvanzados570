@@ -6,7 +6,7 @@
 #include <vector>
 using namespace std;
 
-// Function to print the array
+
 // Complexity: O(n)
 void printArray(const vector<double>& arr) {
     for (double num : arr) {
@@ -15,7 +15,7 @@ void printArray(const vector<double>& arr) {
     cout << endl;
 }
 
-// Function to merge two halves of the array
+
 // Complexity: O(n)
 void merge(vector<double>& arr, int low, int mid, int high) {
     int lengthLeft = mid - low + 1;
@@ -42,8 +42,6 @@ void merge(vector<double>& arr, int low, int mid, int high) {
         }
         k++;
     }
-
-    // Copy remaining elements of left array
     while (i < lengthLeft) {
         arr[k] = arrLeft[i];
         k++;
